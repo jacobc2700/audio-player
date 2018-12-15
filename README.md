@@ -1,6 +1,4 @@
-# flask-audio-player
-
-# Project Title
+# Flask Audio Player
 
 One Paragraph of project description goes here
 
