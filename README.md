@@ -1,6 +1,6 @@
 # Flask Audio Player
 
-One Paragraph of project description goes here
+You can create a new audio by putting the link of a YouTube video in the 'New' tab on the navigation bar.
 
 ## Getting Started
 
