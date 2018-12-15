@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<!-- CSS -->
+<link href="{{ url_for('static', filename='css/shuffleplay_style.css') }}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+<iframe id="playlist" width="1106" height="700" src="https://www.youtube.com/embed/VIDEO_ID?playlist={{ video_id_string }}" frameborder="0" allowfullscreen></iframe>
+
+{% endblock content %}
+
+{% block js %}
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/shuffleplay_script.js') }}"></script>
+{% endblock js %}

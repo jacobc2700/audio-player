@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<!-- CSS -->
+<link href="{{ url_for('static', filename='css/contact_style.css') }}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+<div>
+    <form autocomplete="off" action="{{ url_for('send') }}" method="POST">
+        <input class="text_field" type="text" name="first_name" placeholder="First Name"><br/><br/>
+        <input class="text_field" type="text" name="last_name" placeholder="Last Name"><br/><br/>
+        <input class="text_field" type="text" name="email_address" placeholder="Email Address"><br/><br/>
+        <input class="text_field" type="text" name="subject" placeholder="Subject"><br/><br/>
+        <textarea id="text_area" rows="10" cols="50" name="message" placeholder="Message"></textarea><br/><br/>
+        <input type="submit" value="Send">
+    </form>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/contact_script.js') }}"></script>
+{% endblock js %}

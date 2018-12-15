@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<!-- CSS -->
+<link href="{{ url_for('static', filename='css/download_style.css') }}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+<a href="{{ url_for('download_all') }}">Download All</a><br/><br/>
+
+{% for audio in audios %}
+    <p>
+        {{ audio.artist_name }} - "{{ audio.song_name }}"
+        <!-- <button onclick="url_for('troll')" id="download-mp3-{{ audio.id }}">Download as MP3</button>
+        <button id="download-mp4-{{ audio.id }}">Download as MP4</button> -->
+        <a href="{{ url_for('download_mp4', id=audio.id) }}" id="download-mp4-{{ audio.id }}">MP4</a>
+    </p>
+{% endfor %}
+
+{% endblock content %}
+
+{% block js %}
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/download_script.js') }}"></script>
+{% endblock js %}

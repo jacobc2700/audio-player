@@ -1,0 +1,27 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    height: 70px;
+    display: inline-block;
+}
+
+body {
+    user-select: none;
+    -moz-user-select: none;
+    min-height: 400px;
+    margin-bottom: 100px;
+    clear: both;
+}
+
+.footer_link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.footer_link {
+    color: white;
+}

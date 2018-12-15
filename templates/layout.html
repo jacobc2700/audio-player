@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Bootstrap Core CSS -->
+	<link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- CSS -->
+	<link href="{{ url_for('static', filename='css/thumbnail-gallery.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/layout_style.css') }}" rel="stylesheet">
+
+  {% block css %} {% endblock %}
+
+	<!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  {% if title %}
+      <title>Audio Player - {{ title }}</title>
+  {% else %}
+      <title>Audio Player</title>
+  {% endif %}
+    
+  </head>
+  <body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('download') }}">Download
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('statistics') }}">Statistics
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('shuffleplay') }}">Shuffleplay
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('autoplay') }}">Autoplay
+        </a>
+      </li>
+      <li class="nav-item active">
+				<a class="nav-link" href="{{ url_for('clear') }}">Clear
+				</a>
+      </li>
+      <li class="nav-item active">
+				<a class="nav-link" href="{{ url_for('lyrics') }}">Lyrics
+				</a>
+      </li>
+      <li class="nav-item active">
+				<a class="nav-link" href="{{ url_for('radio') }}">Radio
+				</a>
+      </li>
+      <li class="nav-item active">
+				<a class="nav-link" href="{{ url_for('favorites') }}">Favorites
+				</a>
+      </li>
+			<li class="nav-item active">
+				<a class="nav-link" href="{{ url_for('new') }}">New
+				</a>
+      </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+  <!-- Break -->
+	<br/>
+
+  <!-- Body Content Block -->
+  {% block content %} {% endblock %}
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer bg-dark" id="wrap">
+      <div id="inside">
+        <a class="footer_link" href="https://www.instagram.com/jbumblo/?hl=en">Instagram</a>&nbsp;&nbsp;&nbsp;
+        <a class="footer_link" href="https://twitter.com/?lang=en">Twitter</a>&nbsp;&nbsp;&nbsp;
+        <a class="footer_link" href="https://www.facebook.com/">Facebook</a>&nbsp;&nbsp;&nbsp;
+        <a class="footer_link" href="{{ url_for('terms_and_conditions')}}">Terms & Conditions</a>&nbsp;&nbsp;&nbsp;
+        <a class="footer_link" href="{{ url_for('privacy_policy') }}">Privacy Policy</a>&nbsp;&nbsp;&nbsp;
+        <a class="footer_link" href="{{ url_for('contact') }}">Contact</a>&nbsp;&nbsp;&nbsp;
+        <a class="footer_link" href="{{ url_for('report') }}">Report</a>&nbsp;&nbsp;&nbsp;
+
+        <a class="footer_link" href="{{ url_for('about') }}">About</a>&nbsp;&nbsp;&nbsp;
+        <a class="footer_link" href="{{ url_for('help') }}">Help</a>&nbsp;&nbsp;&nbsp;
+        <a class="footer_link" href="{{ url_for('legal') }}">Legal</a>&nbsp;&nbsp;&nbsp;
+        <a class="footer_link" href="{{ url_for('cookies') }}">Cookies</a>&nbsp;&nbsp;&nbsp;
+
+        <select>
+          <option>English</option>
+          <option>Chinese</option>
+          <option>Spanish</option>
+          <option>Hindi</option>
+          <option>Arabic</option>
+        </select> <br/><br/>
+        <p>Copyright 2018 &copy; Humboo</p>
+      </div>
+  </div>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- JavaScript Content Block -->
+  {% block js %} {% endblock %}
+
+  </body>
+</html>

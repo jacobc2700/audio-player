@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<!-- CSS -->
+<link href="{{ url_for('static', filename='css/home_style.css') }}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+<div class="row text-center text-lg-left">
+    {% for audio in audios %}
+    <div class="col-lg-3 col-md-4 col-xs-6">
+        <a id="title" href="{{ audio.video_url }}">{{ audio.artist_name }} - "{{ audio.song_name }}"</a>
+        <a id="favorite_star" href="#">🌟</a> <!-- when clicked, alert: saved as favorite song! redirect back home,
+            change the color of the star to green, when clicked again, change back to red, it is no longer a favorite audio  -->
+        <a id="edit" href="{{ url_for('audio', id=audio.id) }}">✎</a>
+        <a id="x" href="{{ url_for('remove', id=audio.id) }}">✗</a>
+        <iframe class="img-fluid img-thumbnail" id="frame-{{ audio.id }}" width="300" 
+        src="{{ audio.embedded_link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <button id="{{ audio.id }}" class="start">Start</button>
+        <button id="stop-{{ audio.id }}" class="stop">Stop</button>
+    </div>
+    {% endfor %}
+</div>  
+{% endblock content %}
+
+{% block js %}
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/home_script.js') }}"></script>
+{% endblock js %}

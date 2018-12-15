@@ -1,0 +1,24 @@
+.start {
+    width: 125px;
+}  
+
+.stop {
+    width: 125px;
+}
+
+#title {
+    text-decoration: none;
+}
+
+#x {
+    color: red;
+    text-decoration: none;
+}
+
+#edit {
+    text-decoration: none;
+}
+
+#favorite_star {
+    color: red;
+}

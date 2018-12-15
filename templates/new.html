@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<!-- CSS -->
+<link href="{{ url_for('static', filename='css/new_style.css') }}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+{% if valid_information == False %}
+    <script>
+        alert("Invalid text field inputs. Please try again.");
+    </script>
+{% endif %}
+
+<div>
+    <form autocomplete="off" action="{{ url_for('add') }}" method="POST">
+        <input class="text_field" type="text" name="youtube_url" placeholder="YouTube URL"><br/><br/>
+        <input class="text_field" type="text" name="artist_name" placeholder="Artist Name"><br/><br/>
+        <input class="text_field" type="text" name="song_name" placeholder="Song Name"><br/><br/>
+        <input id="new_button" type="submit" value="Add To Audio Collection">
+    </form>
+</div>
+
+<br/>
+
+<div>
+    <form autocomplete="off" action="{{ url_for('new_playlist') }}" method="POST">
+        <input class="text_field" type="text" name="youtube_playlist_url" placeholder="YouTube Playlist URL"><br/><br/>
+        <input id="new_playlist_button" type="submit" value="Add To Audio Collection">
+    </form>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/new_script.js') }}"></script>
+{% endblock js %}

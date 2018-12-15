@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<!-- CSS -->
+<link href="{{ url_for('static', filename='css/statistics_style.css') }}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+<h3>Explicit Statistics</h3><br/>
+
+{% for num in range(0, length) %}
+    <p>Title: {{ pafy_video_objects[num].title }}</p>
+    <p>Publish Date: {{ pafy_video_objects[num].published }}</p>
+    <p>Duration: {{ pafy_video_objects[num].duration }}</p>
+    <p>Rating: {{ pafy_video_objects[num].rating }}</p>
+    <p>Author: {{ pafy_video_objects[num].author }}</p>
+    <p>Length: {{ pafy_video_objects[num].length }}</p>
+    <p>Keywords: {{ pafy_video_objects[num].keywords }}</p>
+    <p>Thumbnail: {{ pafy_video_objects[num].thumb }}</p>
+    <p>Video ID: {{ pafy_video_objects[num].videoid }}</p>
+    <p>View Count: {{ pafy_video_objects[num].viewcount }}</p>
+    <p>Category: {{ pafy_video_objects[num].category }}</p>
+    <p>Description: {{ pafy_video_objects[num].description }}</p>
+    <p>Likes: {{ pafy_video_objects[num].likes }}</p>
+    <p>Dislikes: {{ pafy_video_objects[num].dislikes }}</p>
+    {% if num != (length - 1) %}
+        <p>------------------------------------------------------------</p>
+    {% endif %}
+{% endfor %}
+
+<h3>Implicit Statistics</h3><br/>
+
+{% for num in range(0, length) %}
+    <p>Title: {{ pafy_video_objects[num].title }}</p>
+    <p>Like Percentage: {{ like_percentages[num] }}</p>
+    <p>Dislike Percentage: {{ dislike_percentages[num] }}</p>
+    <p>Reaction Percentage: {{ reaction_percentages[num] }}</p>
+    <p>Views Per Day: {{ views_per_day[num] }}</p>
+    <p>Likes Per Day: {{ likes_per_day[num] }}</p>
+    <p>Dislikes Per Day: {{ dislikes_per_day[num] }}</p>
+    <p>Days Passed From Upload Date: {{ days_passed_from_upload_date[num] }}</p>
+    {% if num != (length - 1) %}
+        <p>------------------------------------------------------------</p>
+    {% endif %}
+{% endfor %}
+
+{% endblock content %}
+
+{% block js %}
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/statistics_script.js') }}"></script>
+{% endblock js %}

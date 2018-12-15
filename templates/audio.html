@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<!-- CSS -->
+<link href="{{ url_for('static', filename='css/audio_style.css') }}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+{% if valid_information == False %}
+    <script>
+        alert("Invalid text field inputs. Please try again.");
+    </script>
+{% endif %}
+
+<div>
+    <form autocomplete="off" action="{{ url_for('update', id=audio.id) }}" method="POST">
+        <input class="text_field" type="text" name="youtube_url" placeholder="YouTube URL" value="{{ audio.video_url }}"><br/><br/>
+        <input class="text_field" type="text" name="artist_name" placeholder="Artist Name" value="{{  audio.artist_name }}"><br/><br/>
+        <input class="text_field" type="text" name="song_name" placeholder="Song Name" value="{{ audio.song_name }}"><br/><br/>
+        <input id="new_button" type="submit" value="Update Audio">
+    </form>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/audio_script.js') }}"></script>
+{% endblock js %}

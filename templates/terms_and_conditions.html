@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<!-- CSS -->
+<link href="{{ url_for('static', filename='css/terms_and_conditions_style.css') }}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+<p>You can create an account on this website.</p>
+<p>You can create content on this website.</p>
+<p>You can send this website copyright infrignment notices.</p>
+
+{% endblock content %}
+
+{% block js %}
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/terms_and_conditions_script.js') }}"></script>
+{% endblock js %}

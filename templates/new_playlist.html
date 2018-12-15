@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<!-- CSS -->
+<link href="{{ url_for('static', filename='css/new_playlist_style.css') }}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+
+<p>New Playlist Page</p>
+
+<!-- create input for youtube url, artist name, song name -->
+<!-- populate youtube url with each url -->
+<!-- create all under a form -->
+
+<!-- submit button at the button, only submittable if all the boxes are populated with non white space -->
+
+{% endblock content %}
+
+{% block js %}
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/new_playlist_script.js') }}"></script>
+{% endblock js %}
