@@ -1,8 +1,8 @@
-# audio-player
+# flask-audio-player
 
-Audio player made with the Flask framework. Add songs to your audio collection by specifying YouTube video links.
+An audio player made with the Flask framework. You can add songs to your audio collection by specifying YouTube video links. I used the Pafy library. 
 
-Installation:
-1. clone this repository
-2. cd into this repository
-3. python app.py
+### Usage:
+1. Clone this repository.
+2. Change the directory to the folder.
+3. Run 'python app.py' in the command line.
