@@ -76,10 +76,6 @@ def download():
     audios = Audio.query.all()
     return render_template('download.html', audios=audios, title="Download")
 
-@app.route('/report/')
-def report():
-    return render_template('report.html', title="Report")
-
 @app.route('/home/')
 def home():
     audios = Audio.query.all()
@@ -88,38 +84,6 @@ def home():
 @app.route('/new/')
 def new():
     return render_template('new.html', title='New')
-
-@app.route('/contact/')
-def contact():
-    return render_template('contact.html', title="Contact")
-
-@app.route('/about/')
-def about():
-    return render_template('about.html', title="About")
-
-@app.route('/help/')
-def help():
-    return render_template('help.html', title="Help")
-
-@app.route('/legal/')
-def legal():
-    return render_template('legal.html', title="Legal")
-
-@app.route('/cookies/')
-def cookies():
-    return render_template('cookies.html', title="Cookies")
-
-@app.route('/terms-and-conditions/')
-def terms_and_conditions():
-    return render_template('terms_and_conditions.html', title="Terms & Conditions")
-
-@app.route('/privacy-policy/')
-def privacy_policy():
-    return render_template('privacy_policy.html', title="Privacy Policy")
-
-@app.route('/new-playlist/', methods=['POST'])
-def new_playlist():
-    return render_template('new_playlist.html')
 
 @app.route('/statistics/')
 def statistics():
@@ -183,27 +147,6 @@ def download_mp4(id):
     stream = yt.streams.first()
     stream.download()
     return redirect(url_for('home'))
-
-@app.route('/download-all')
-def download_all():
-    for audio in Audio.query.all():
-        link = audio.video_url
-        yt = pytube.YouTube(link)
-        stream = yt.streams.first()
-        stream.download()
-    return redirect(url_for('home'))
-
-@app.route('/favorites/')
-def favorites():
-    return render_template('favorites.html', title="Favorites")
-
-@app.route('/lyrics/')
-def lyrics():
-    return render_template('lyrics.html', title="Favorites")
-
-@app.route('/radio/')
-def radio():
-    return render_template('radio.html')
 
 def is_youtube_url_valid(video_url):
     try:

@@ -21,15 +21,7 @@
         <input id="new_button" type="submit" value="Add To Audio Collection">
     </form>
 </div>
-
 <br/>
-
-<div>
-    <form autocomplete="off" action="{{ url_for('new_playlist') }}" method="POST">
-        <input class="text_field" type="text" name="youtube_playlist_url" placeholder="YouTube Playlist URL"><br/><br/>
-        <input id="new_playlist_button" type="submit" value="Add To Audio Collection">
-    </form>
-</div>
 
 {% endblock content %}
 
