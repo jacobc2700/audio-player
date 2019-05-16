@@ -11,8 +11,6 @@
     {% for audio in audios %}
     <div class="col-lg-3 col-md-4 col-xs-6">
         <a id="title" href="{{ audio.video_url }}">{{ audio.artist_name }} - "{{ audio.song_name }}"</a>
-        <a id="favorite_star" href="#">🌟</a> <!-- when clicked, alert: saved as favorite song! redirect back home,
-            change the color of the star to green, when clicked again, change back to red, it is no longer a favorite audio  -->
         <a id="edit" href="{{ url_for('audio', id=audio.id) }}">✎</a>
         <a id="x" href="{{ url_for('remove', id=audio.id) }}">✗</a>
         <iframe class="img-fluid img-thumbnail" id="frame-{{ audio.id }}" width="300" 

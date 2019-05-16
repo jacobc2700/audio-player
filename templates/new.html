@@ -13,7 +13,10 @@
     </script>
 {% endif %}
 
+<br>
+<center>
 <div>
+    <h1 style="text-decoration: underline;">New Audio</h1><br>
     <form autocomplete="off" action="{{ url_for('add') }}" method="POST">
         <input class="text_field" type="text" name="youtube_url" placeholder="YouTube URL"><br/><br/>
         <input class="text_field" type="text" name="artist_name" placeholder="Artist Name"><br/><br/>
@@ -21,6 +24,7 @@
         <input id="new_button" type="submit" value="Add To Audio Collection">
     </form>
 </div>
+</center>
 <br/>
 
 {% endblock content %}

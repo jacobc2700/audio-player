@@ -10,6 +10,7 @@
 {% for audio in audios %}
     <p>
         {{ audio.artist_name }} - "{{ audio.song_name }}"
+        <a href="{{ url_for('download_mp3', id=audio.id) }}" id="download-mp3-{{ audio.id }}">MP3</a>
         <a href="{{ url_for('download_mp4', id=audio.id) }}" id="download-mp4-{{ audio.id }}">MP4</a>
     </p>
 {% endfor %}

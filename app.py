@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from errors.handlers import errors
 import pafy, random
 import pytube
+import os
 
 from youtube_methods import getLikePercentage, getDislikePercentage, getReactionPercentage, getViewsPerDay
 from youtube_methods import getLikesPerDay, getDislikesPerDay, getDaysPassedFromUploadDate
@@ -146,6 +147,13 @@ def download_mp4(id):
     yt = pytube.YouTube(link)
     stream = yt.streams.first()
     stream.download()
+    return redirect(url_for('home'))
+
+@app.route('/download-mp3/<id>/')
+def download_mp3(id):
+    audio = Audio.query.get(id)
+    link = audio.video_url
+    os.system("youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 " + link)
     return redirect(url_for('home'))
 
 def is_youtube_url_valid(video_url):
