@@ -30,6 +30,13 @@ def audio(id):
     audio = Audio.query.filter_by(id=int(id)).first()
     return render_template('audio.html', audio=audio)
 
+@app.route('/player/<id>/')
+def player(id):
+    audio = Audio.query.filter_by(id=int(id)).first()
+    link = audio.video_url
+    video_id = link[-11:]
+    return render_template('player.html', audio=audio, link=link, video_id=video_id)
+
 @app.route('/clear/')
 def clear():
     db.drop_all()

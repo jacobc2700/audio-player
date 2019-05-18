@@ -13,6 +13,7 @@
         <a id="title" href="{{ audio.video_url }}">{{ audio.artist_name }} - "{{ audio.song_name }}"</a>
         <a id="edit" href="{{ url_for('audio', id=audio.id) }}">✎</a>
         <a id="x" href="{{ url_for('remove', id=audio.id) }}">✗</a>
+        <a href="{{ url_for('player', id=audio.id) }}">👀</a>
         <iframe class="img-fluid img-thumbnail" id="frame-{{ audio.id }}" width="300" 
         src="{{ audio.embedded_link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         <button id="{{ audio.id }}" class="start">Start</button>
