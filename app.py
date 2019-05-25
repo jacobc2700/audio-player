@@ -156,6 +156,13 @@ def download_mp4(id):
     stream.download()
     return redirect(url_for('home'))
 
+@app.route('/download-captions/<id>/')
+def download_captions(id):
+    audio = Audio.query.get(id)
+    link = audio.video_url
+    os.system('python captions.py ' + link)
+    return redirect(url_for('home'))
+
 @app.route('/download-mp3/<id>/')
 def download_mp3(id):
     audio = Audio.query.get(id)
