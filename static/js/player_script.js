@@ -1,18 +1,21 @@
+//The stuff below is for the YouTube Player.
+//It's from the Google documentation.
+
 var player;
 
 var videoId;
 
 amplify.store("videoId", "...");
 
-// Callback for when the YouTube iFrame player is ready
+//Callback for when the YouTube iFrame player is ready.
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    // Set Player height and width
+    //Set Player height and width
     height: '390',
     width: '640',
-    // Set the id of the video to be played
+    //Set the id of the video to be played
     videoId: amplify.store("videoId"),
-    // Setup event handelers
+    //Setup event handelers
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange,
@@ -24,30 +27,34 @@ function onYouTubeIframeAPIReady() {
   });
 };
 
-// Event Handlers 
-function onPlaybackQualityChange(){
+//Event Handlers 
+function onPlaybackQualityChange() {
   // Update playback quality on page
   update("quality");
 };
-function onPlaybackRateChange(){
+
+function onPlaybackRateChange() {
   // Update playback rate on page
   update("rate");
 };
-function onError(error){
+
+function onError(error) {
   // Update errors on page
   console.log("Error!");
 };
-function onApiChange(event){
+
+function onApiChange(event) {
   // Update currently availbe APIs
   console.log("API Change!");
 };
-function onPlayerReady(){
+
+function onPlayerReady() {
   // Update page after player is ready
   updateAll();
   playVideo();
 }
 
-function onPlayerStateChange(event){
+function onPlayerStateChange(event) {
   // Get current state
   // Video has ended
   switch (event.data) {
@@ -82,48 +89,48 @@ function onPlayerStateChange(event){
 // Update HTML nodes on the page
 // with most recent values from
 // the YouTube iFrame API
-function update(node){
-  switch (node){
+function update(node) {
+  switch (node) {
     // Update player reported changes
     case "duration":
-      document.getElementById("duration").innerHTML = player.getDuration()+"s";
+      document.getElementById("duration").innerHTML = player.getDuration() + "s";
       break;
     case "url":
       var url = player.getVideoUrl();
-      document.getElementById("url").innerHTML = "<a href=\""+url+"\" target=\"_blank\">"+url+"</a>";
+      document.getElementById("url").innerHTML = "<a href=\"" + url + "\" target=\"_blank\">" + url + "</a>";
       break;
     case "embedCode":
       var embedCode = player.getVideoEmbedCode();
-      var index = Math.ceil(embedCode.length/3);
-      var fmtEmbedCode = [embedCode.slice(0, index), "\n", embedCode.slice(index, index*2),"\n", embedCode.slice(index*2)].join('');
+      var index = Math.ceil(embedCode.length / 3);
+      var fmtEmbedCode = [embedCode.slice(0, index), "\n", embedCode.slice(index, index * 2), "\n", embedCode.slice(index * 2)].join('');
       document.getElementById("embedCode").innerText = fmtEmbedCode
       break;
     case "percentLoaded":
-      document.getElementById("percentLoaded").innerHTML = player.getVideoLoadedFraction()*100+"%"
+      document.getElementById("percentLoaded").innerHTML = player.getVideoLoadedFraction() * 100 + "%"
       break;
     case "status":
       var state = player.getPlayerState()
-      switch (state){
+      switch (state) {
         case YT.PlayerState.ENDED:
-          status="ENDED";
+          status = "ENDED";
           break;
-        case YT.PlayerState.PLAYING:   
-          status="PLAYING";
+        case YT.PlayerState.PLAYING:
+          status = "PLAYING";
           break;
-        case YT.PlayerState.PAUSED:    
-          status="PAUSED";
+        case YT.PlayerState.PAUSED:
+          status = "PAUSED";
           break;
-        case YT.PlayerState.BUFFERING: 
-          status="BUFFERING";
+        case YT.PlayerState.BUFFERING:
+          status = "BUFFERING";
           break;
-        case YT.PlayerState.CUED:      
-          status="CUED";
+        case YT.PlayerState.CUED:
+          status = "CUED";
           break;
         default:
-          status="UNKNOWN";
+          status = "UNKNOWN";
           break;
       }
-      document.getElementById("status").innerHTML = status+" ("+state+")";
+      document.getElementById("status").innerHTML = status + " (" + state + ")";
       break;
     case "currentTime":
       document.getElementById("currentTime").innerHTML = Math.round(player.getCurrentTime()) + " seconds."
@@ -139,11 +146,11 @@ function update(node){
       var selectbox = document.getElementById('qualityOption');
       //clear existing options
       var i;
-      for(i=selectbox.options.length-1;i>=0;i--){
-          selectbox.remove(i);
+      for (i = selectbox.options.length - 1; i >= 0; i--) {
+        selectbox.remove(i);
       }
       //write current available options
-      for (var i in availableQualityLevels){
+      for (var i in availableQualityLevels) {
         var opt = document.createElement("OPTION");
         opt.text = availableQualityLevels[i];
         opt.value = availableQualityLevels[i];
@@ -156,11 +163,11 @@ function update(node){
       var selectbox = document.getElementById('rateOption');
       //clear existing options
       var i;
-      for(i=selectbox.options.length-1;i>=0;i--){
-          selectbox.remove(i);
+      for (i = selectbox.options.length - 1; i >= 0; i--) {
+        selectbox.remove(i);
       }
       //write current available options
-      for (var i in availableRates){
+      for (var i in availableRates) {
         var opt = document.createElement("OPTION");
         opt.text = availableRates[i];
         opt.value = availableRates[i];
@@ -180,8 +187,8 @@ function update(node){
   }
 };
 // Updates all HTML nodes
-function updateAll(){
-  for (var node in nodeList){
+function updateAll() {
+  for (var node in nodeList) {
     update(nodeList[node]);
   }
 };
@@ -203,53 +210,73 @@ var nodeList = [
 ];
 
 // Functions to invoke user requested action through the iFrame API
-function loadNewVideo(){
+function loadNewVideo() {
   player.loadVideoById(document.getElementById("video_idOption").value);
 };
-function cueNewVideo(){
+
+function cueNewVideo() {
   player.cueVideoById(document.getElementById("video_idOption").value);
 };
-function playVideo(){
+
+function playVideo() {
   player.playVideo();
 };
-function pauseVideo(){
+
+function pauseVideo() {
   player.pauseVideo();
 };
-function stopVideo(){
+
+function stopVideo() {
   player.stopVideo();
 };
-function seekTo(){
-  player.seekTo(document.getElementById("currentTimeOption").value);  
+
+function seekTo() {
+  player.seekTo(document.getElementById("currentTimeOption").value);
 };
-function setVolume(){
-  player.setVolume(document.getElementById("volumeOption").value);  
+
+function setVolume() {
+  player.setVolume(document.getElementById("volumeOption").value);
 };
-function mute(){
+
+function mute() {
   player.mute();
 };
-function unmute(){
-  player.unMute();  
+
+function unmute() {
+  player.unMute();
 };
-function setQuality(){
-  player.setPlaybackQuality(document.getElementById("qualityOption").value);  
+
+function setQuality() {
+  player.setPlaybackQuality(document.getElementById("qualityOption").value);
 };
-function setRate(){
-  player.setPlaybackRate(document.getElementById("rateOption").value);  
+
+function setRate() {
+  player.setPlaybackRate(document.getElementById("rateOption").value);
 };
 
 // Controls interval handlers to update page contens
 // Array to track intervals
 var activeIntervals = [];
-function setIntervals(){
+
+function setIntervals() {
   // Sets invertval funtions to actively update page content
-  activeIntervals[0] = setInterval(function(){update("percentLoaded")}, 500);
-  activeIntervals[1] = setInterval(function(){update("currentTime")}, 500);
-  activeIntervals[2] = setInterval(function(){update("mute")}, 500);
-  activeIntervals[3] = setInterval(function(){update("volume")}, 500);
+  activeIntervals[0] = setInterval(function () {
+    update("percentLoaded")
+  }, 500);
+  activeIntervals[1] = setInterval(function () {
+    update("currentTime")
+  }, 500);
+  activeIntervals[2] = setInterval(function () {
+    update("mute")
+  }, 500);
+  activeIntervals[3] = setInterval(function () {
+    update("volume")
+  }, 500);
 };
-function clearIntervals(){
+
+function clearIntervals() {
   // Clears existing intervals to actively update page content
-  for (var interval in activeIntervals){
+  for (var interval in activeIntervals) {
     clearInterval(interval);
   }
 };

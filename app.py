@@ -8,13 +8,18 @@ import os
 from youtube_methods import getLikePercentage, getDislikePercentage, getReactionPercentage, getViewsPerDay
 from youtube_methods import getLikesPerDay, getDislikesPerDay, getDaysPassedFromUploadDate
 
+# Configure app.
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+# Make db.
 db = SQLAlchemy(app)
 
+# Register blueprint for the common errors.
 app.register_blueprint(errors)
 
+# Audio model for database.
 class Audio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     artist_name = db.Column(db.String(20))
@@ -182,6 +187,7 @@ def remove(id):
     db.session.query(Audio).filter_by(id=int(id)).delete()
     db.session.commit()
     return redirect(url_for('home'))
-    
+
+# Run application in debug mode.
 if __name__ == '__main__':
     app.run(debug=True)
